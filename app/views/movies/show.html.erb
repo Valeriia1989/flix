@@ -1,0 +1,39 @@
+
+<div id="movie-info" class="clearfix">
+  <%= image_tag "posters/large/#{@movie.poster_image}", class: "imgLeft poster-image", alt:"#{@movie.title} poster"%>
+
+  <div class="overview">
+
+    <h2><%= @movie.title %></h2>
+    <p>Cast: <%= @movie.cast %></p>
+    <p class="mpaa-rating">Rating: <%= @movie.mpaa_rating %> PG-13</p>
+    <p class="runtime">Runtime: <%= @movie.runtime_hours %></p>
+    <%= @movie.description %>
+    <% if user_signed_in? %>
+    <%= link_to "Edit This Movie", edit_movie_path(@movie), class: "button" %>
+    <% end %>
+  </div>
+  <div class="details">
+    <h4>Movie Details</h4>
+    <div>
+      <span>Genre</span>
+      <%= link_to(@movie.genre.name, @movie.genre) unless @movie.genre.nil? %>
+    </div>
+    <div>
+      <span>Director</span>
+      <%= @movie.director %>
+    </div>
+    <div>
+      <span>Subtitles:</span>
+      <%= @movie.has_subtitles %>
+    </div>
+    <div>
+      <span>Ticket Price:</span>
+      <%= @movie.ticket_price %>
+    </div>
+    <div>
+      <span>Release Date:</span>
+      <%= @movie.release_date %>
+    </div>
+  </div>
+</div>
